@@ -1,0 +1,38 @@
+/*
+*
+* ==========================================
+* CUSTOM UTIL CLASSES
+* ==========================================
+*
+*/
+.login,
+.image {
+  min-height: 100vh;
+}
+
+.bg-image {
+  background-image: url('https://vos.social/wp-content/uploads/2018/06/futebol.jpg');
+  background-size: cover;
+  background-position: center center;
+}
+
+.google {
+  background-color: #dd4b39;
+  color: white;
+}
+
+.fb {
+  background-color: #3B5998;
+  color: white;
+}
+
+.socialBtn {
+  padding: 8px;
+  border-radius: 40%;
+  margin-left: 5px;
+  display: inline-block;
+}
+
+.socialBtn:hover {
+  opacity: 0.85;
+}

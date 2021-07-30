@@ -1,0 +1,153 @@
+<br>
+<div class="container">
+  <div class="alert alert-primary" role="alert">
+    <b>Simulador Copa do Mundo 2018</b>
+    <br>
+    <li>Fase de Grupos</li>
+    <li>Fase Eliminatória</li>
+    <li>Resultados de forma aleatória.</li>
+  </div>
+  <div class="row pl-2">
+    <div class="col-md-12 bg-white">
+      <br>
+      <div class="row" *ngIf="authService.userData as user">
+
+        <div class="col-md-3 pt-2 pb-2 mb-1 text-center">
+          <img src="https://i1.sndcdn.com/avatars-000475379184-ypsdhm-t500x500.jpg" width="150" class="rounded-circle">
+          <br><br>
+          <b>{{(user.displayName) ? user.displayName : 'User'}}</b>
+          <br>
+          <small>{{user.email}}</small>
+          <br>
+          <button type="button" class="btn btn-outline-danger btn-sm mt-2" (click)="authService.SignOut()">Sair</button>
+
+        </div>
+
+        <div class="col-md-2 text-center">
+        </div>
+
+        <div class="col-md-7 text-center">
+          <div class="row">
+            <div class="col-md-4 text-center">
+              <img src="https://i.pinimg.com/originals/25/f7/24/25f724f50d837a780f487a10d7bff647.png" width="200">
+            </div>
+            <div class="col-md-8 text-left">
+              <br><br><br><br>
+              <li>{{champion}}</li>
+              <h1>CAMPEÃO</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="row">
+
+    <div class="col-md-12">
+      <br>
+      <h5 class="mt-0">GRUPOS</h5>
+    </div>
+
+    <div class="col-md-3 pl-4" *ngFor="let group of groups_html">
+
+      <div class="row bg-secondary text-white pt-2 pb-2 mb-1">
+        <div class="col-1">
+          <div style="font-size: 12px;"><b>#</b></div>
+        </div>
+        <div class="col-7 text-left">
+          <div style="font-size: 11px;">Equipe</div>
+        </div>
+        <div class="col-2 text-center">
+          <div style="font-size: 11px;">P</div>
+        </div>
+      </div>
+      <span *ngFor="let team of championship_groups_html[0][group]; let i = index">
+        <div class="row bg-white pt-2 pb-2 mb-1">
+          <div class="col-1">
+            <div style="font-size: 12px;">
+              <span class="badge badge-{{team['bg']}}"><b>{{ i + 1}}º</b></span>
+            </div>
+          </div>
+          <div class="col-7 text-left">
+            <div style="font-size: 11px;">{{team['team']}}</div>
+          </div>
+          <div class="col-2 text-center">
+            <div style="font-size: 11px;">{{team['points']}}</div>
+          </div>
+        </div>
+      </span>
+      <br>
+      <div class="row bg-secondary text-white pt-2 pb-2 mb-1">
+        <div class="col-12 text-center">
+          <div style="font-size: 11px;">Grupo {{group}}</div>
+        </div>
+      </div>
+      <div class="row bg-white pt-2 pb-2 mb-1" *ngFor="let match of matches_groups_html[group]">
+        <div class="col-4 bg-white text-right">
+          <div style="font-size: 12px;"><b>{{match['team_a']}}</b></div>
+        </div>
+        <div class="col-4 bg-white text-center">
+          <div style="font-size: 11px;">{{match['result_a']}} x {{match['result_b']}}</div>
+        </div>
+        <div class="col-4 bg-white text-left">
+          <div style="font-size: 11px;"><b>{{match['team_b']}}</b></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+
+    <div class="col-md-12">
+      <br>
+      <h5 class="mt-0">FASE ELIMINATÓRIA</h5>
+    </div>
+
+    <div class="col-md-4 pl-4">
+      <br>
+      <div class="row bg-secondary text-white pt-2 pb-2 mb-1">
+        <div class="col-12 text-center">
+          <div style="font-size: 11px;">Fase 1</div>
+        </div>
+      </div>
+      <div class="row bg-white pt-2 pb-2 mb-1" *ngFor="let match of first_phase_html">
+        <div class="col-4 bg-white text-right">
+          <div style="font-size: 12px;"><b>{{match['team_a']}}</b></div>
+        </div>
+        <div class="col-4 bg-white text-center">
+          <div style="font-size: 11px;">{{match['result_a']}} x {{match['result_b']}}</div>
+        </div>
+        <div class="col-4 bg-white text-left">
+          <div style="font-size: 11px;"><b>{{match['team_b']}}</b></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 pl-4" *ngFor="let i of phase_count">
+
+      <br>
+      <div class="row bg-secondary text-white pt-2 pb-2 mb-1">
+        <div class="col-12 text-center">
+          <div style="font-size: 11px;">Fase {{i + 1}}</div>
+        </div>
+      </div>
+      <div class="row bg-white pt-2 pb-2 mb-1" *ngFor="let match of next_phase_1_html[i-1]">
+        <div class="col-4 bg-white text-right">
+          <div style="font-size: 12px;"><b>{{match['team_a']}}</b></div>
+        </div>
+        <div class="col-4 bg-white text-center">
+          <div style="font-size: 11px;">{{match['result_a']}} x {{match['result_b']}}</div>
+        </div>
+        <div class="col-4 bg-white text-left">
+          <div style="font-size: 11px;"><b>{{match['team_b']}}</b></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
